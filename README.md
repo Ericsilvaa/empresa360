@@ -1,5 +1,9 @@
 # empresa360
 
+```
+Only for study Vue Router!!!
+```
+
 ## Project setup
 ```
 npm install
