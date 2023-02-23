@@ -31,8 +31,8 @@ const routes = [
         children: [
             {path: 'vendas', component: Vendas, children: 
                 [
-                    {path: 'leads', component: Leads}, //localhost:8080/home/vendas/leads
-                    {path: 'leads/:id', component: Lead}, //localhost:8080/home/vendas/leads/1
+                    {path: 'leads', component: Leads, name: 'leads'}, //localhost:8080/home/vendas/leads
+                    {path: 'leads/:id', component: Lead, name: 'lead'}, //localhost:8080/home/vendas/leads/1
                     {path: 'contratos', component: Contratos}, //localhost:8080/home/vendas/leads
                     {path: '', component: VendasPadrao} //localhost:8080/home/vendas - padrão
                 ]
