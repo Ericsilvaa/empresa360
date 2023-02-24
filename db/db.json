@@ -25,17 +25,22 @@
 		{
 			"id": 1,
 			"servico": "Seguro de vida",
-			"icone": "seguro_vida.png"
+			"icone": "seguro_vida.png",
+			"descricao": "Detalhes do seguro de vida"
 		},
 		{
 			"id": 2,
 			"servico": "Seguro residencial",
-			"icone": "seguro_residencial.png"
+			"icone": "seguro_residencial.png",
+			"descricao": "Detalhes do seguro residencial"
+
 		},
 		{
 			"id": 3,
 			"servico": "Seguro auto",
-			"icone": "seguro_auto.png"
+			"icone": "seguro_auto.png",
+			"descricao": "Detalhes do seguro auto"
+
 		}
 	]
 }

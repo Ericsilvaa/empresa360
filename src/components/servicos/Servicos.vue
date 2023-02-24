@@ -2,16 +2,20 @@
   <div>
     <h5>Serviços</h5>
     <hr>
-    <div class="row">
+    <div class="row mb-2">
       <div class="col" v-for="d in dados" :key="d.id">
         <div class="card" style="width:13rem">
           <img :src="`/img/${d.icone}`" :alt="d.servico" class="card-img-top">
           <div class="card-body text-center">
-            <p class="card-text">{{ d.servico }}</p>
+            <router-link :to="{name: 'servico', params: {id: d.id} }">
+              <p class="card-text">{{ d.servico }}</p>
+            </router-link>
           </div>
         </div>
       </div>
     </div>
+
+    <router-view class="mt-3"/>
   </div>
 </template>
 

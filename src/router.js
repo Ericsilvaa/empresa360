@@ -10,6 +10,7 @@ import Site from '@/views/Site.vue'
 import Dashboard from '@/components/dashboard/Dashboard.vue'
 
 //Serviços
+import Servico from '@/components/servicos/Servico.vue'
 import Servicos from '@/components/servicos/Servicos.vue'
 
 //Vendas
@@ -37,7 +38,11 @@ const routes = [
                     {path: '', component: VendasPadrao} //localhost:8080/home/vendas - padrão
                 ]
             },
-            {path: 'servicos', component: Servicos}, //localhost:8080/home/servicos
+            {path: 'servicos', component: Servicos, name: 'servicos', children: 
+                [
+                    {path:':id', component: Servico, name: 'servico'} //localhost:8080/home/servicos/:id
+                ]
+            }, //localhost:8080/home/servicos
             {path: 'dashboard', component: Dashboard} //localhost:8080/home/dashboard
         ]
     },
