@@ -15,7 +15,10 @@
       </div>
     </div>
 
-    <router-view class="mt-3"/>
+    <router-view class="mt-3"/> <!-- default -->
+    <router-view class="mt-3" name="opcoes"/>
+    <router-view class="mt-3" name="indicadores" />
+    
   </div>
 </template>
 

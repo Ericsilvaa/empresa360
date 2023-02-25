@@ -10,6 +10,8 @@ import Site from '@/views/Site.vue'
 import Dashboard from '@/components/dashboard/Dashboard.vue'
 
 //Serviços
+import Indicadores from '@/components/servicos/Indicadores.vue'
+import Opcoes from '@/components/servicos/Opcoes.vue'
 import Servico from '@/components/servicos/Servico.vue'
 import Servicos from '@/components/servicos/Servicos.vue'
 
@@ -40,7 +42,14 @@ const routes = [
             },
             {path: 'servicos', component: Servicos, name: 'servicos', children: 
                 [
-                    {path:':id', component: Servico, name: 'servico'} //localhost:8080/home/servicos/:id
+                    {path:':id', name: 'servico', component: 
+                        {
+                            default: Servico,
+                            opcoes: Opcoes,
+                            indicadores: Indicadores
+
+                        } // mult RouterViews
+                    } //localhost:8080/home/servicos/:id
                 ]
             }, //localhost:8080/home/servicos
             {path: 'dashboard', component: Dashboard} //localhost:8080/home/dashboard
