@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import Site from '@/views/Site.vue'
+import PaginaNaoEncontrada from '@/views/PaginaNaoEncontrada.vue'
 
 //Dashboard
 import Dashboard from '@/components/dashboard/Dashboard.vue'
@@ -36,7 +37,7 @@ const routes = [
                 [
                     {path: 'leads', component: Leads, name: 'leads'}, //localhost:8080/home/vendas/leads
                     {path: 'leads/:id', component: Lead, name: 'lead'}, //localhost:8080/home/vendas/leads/1
-                    {path: 'contratos', component: Contratos}, //localhost:8080/home/vendas/leads
+                    {path: 'contratos', component: Contratos}, //localhost:8080/home/vendas/contratos
                     {path: '', component: VendasPadrao} //localhost:8080/home/vendas - padrão
                 ]
             },
@@ -58,7 +59,12 @@ const routes = [
     {
         path: '/login', //localhost:8080/login
         component: Login
-    }
+    },
+    // Redirecionamentos
+    // { path: '/:catchAll(.*)*', redirect: '/' } //Vue2 = * - Rotas Coringas
+    {path: '/contratos', redirect: '/home/vendas/contratos'},
+    { path: '/:catchAll(.*)*', component: PaginaNaoEncontrada },
+
 ] 
 
 const router = createRouter({
