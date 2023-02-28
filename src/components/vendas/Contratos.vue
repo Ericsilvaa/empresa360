@@ -1,6 +1,28 @@
 <template>
+  <!-- formulario pesquisa -->
   <div>
-    <h5>Leads</h5>
+    <div class="card mb-4">
+    <div class="card-header">Contratos</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <label class="form-label">ID Contrato:</label>
+                <input type="text" class="form-control" v-model="formPesquisa.id_like">
+            </div>
+            <div class="col-6">
+                <label class="form-label">Data início:</label>
+                <div class="input-group">
+                    <input type="date" class="form-control"  v-model="formPesquisa.data_inicio_gte">
+                    <input type="date" class="form-control"  v-model="formPesquisa.data_inicio_lte">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-primary" @click="pesquisar">Pesquisar</button>
+    </div>
+</div>
+
     <table class="table table-hover">
       <thead>
         <tr>
@@ -15,8 +37,8 @@
       <tbody>
         <tr v-for="d in dados" :key="d.id">
           <td>{{ d.id }}</td>
-          <td>{{ d.leadId}}</td>
-          <td>{{ d.servicoId}}</td>
+          <td>{{ d.lead.nome}}</td>
+          <td>{{ d.servico.servico}}</td>
           <td>{{ d.data_inicio}}</td>
           <td>{{ d.data_fim}}</td>
         </tr>
@@ -29,9 +51,39 @@ import ApiMixin from '@/mixins/ApiMixin'
 
 export default {
   name: 'ContratosVendas',
+  data() {
+    return {
+      parametrosDeRelacionamento: '_expand=lead&_expand=servico',
+      formPesquisa: {
+        id_like: '',
+        data_inicio_gte: '',
+        data_inicio_lte: '' 
+      }
+    }
+  },
+  methods: {
+    pesquisar() {
+
+      const queryParams = new URLSearchParams(this.formPesquisa).toString()
+      const url = `http://localhost:3000/contratos?${this.parametrosDeRelacionamento}&${queryParams}`
+      this.getApiLeads(`${url}`)
+
+    }
+  },
   mixins: [ApiMixin],
   created() {
-    this.getApiLeads('http://localhost:3000/contratos')
+    // ainda nao foi reestabelicido paramsQuery no component
+    const queryParams = new URLSearchParams(this.$route.query).toString()
+    const url = `http://localhost:3000/contratos?${this.parametrosDeRelacionamento}&${queryParams}`
+    this.getApiLeads(`${url}`)
+  },
+  beforeRouteUpdate(to,next) {
+    // to.query --- objeto => URLSearchParams
+
+    const queryParams = new URLSearchParams(to.query).toString()
+    const url = `http://localhost:3000/contratos?${this.parametrosDeRelacionamento}&${queryParams}`
+    this.getApiLeads(`${url}`)
+    next()
   }
 }
 </script>

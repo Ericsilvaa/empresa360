@@ -14,7 +14,8 @@ export default {
   name: 'ServicoDetails',
   mixins: [ApiMixin],
   // watch: {
-  //     $route(to){ //to para novoValor, from para valorAntigo
+  //            to para novoValor, from para valorAntigo
+  //     $route(to){  
   //       if(to.params.id != undefined) {
   //         this.getApiLeads(`http://localhost:3000/servicos/${to.params.id}`)
   //       }
@@ -29,7 +30,6 @@ export default {
       this.getApiLeads(`http://localhost:3000/servicos/${to.params.id}`)
       next()
     }
-
   },
   created() {
     this.getApiLeads(`http://localhost:3000/servicos/${this.$route.params.id}`)
